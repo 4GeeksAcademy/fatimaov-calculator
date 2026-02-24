@@ -19,8 +19,8 @@ const App = () => {
 		subtraction: (firstOperand, secondOperand) => firstOperand - secondOperand,
 		multiplication: (firstOperand, secondOperand) => firstOperand * secondOperand,
 		division: (firstOperand, secondOperand) => firstOperand / secondOperand,
-		modulus:(firstOperand, secondOperand) => firstOperand % secondOperand, 
-		
+		modulus: (firstOperand, secondOperand) => firstOperand % secondOperand,
+
 	}
 
 
@@ -41,22 +41,21 @@ const App = () => {
 
 	// Addition
 	function handleClickAddition(e) {
-
-		setFirstOperand(accumulator)
+		typeof accumulator === 'string' ? setFirstOperand(Number(accumulator)) : setFirstOperand(accumulator);
 		setOperation(() => operationsArr.addition)
 		setAccumulator('')
 	}
 
 	// Subtraction
 	function handleClickSubtraction(e) {
-		setFirstOperand(accumulator)
+		typeof accumulator === 'string' ? setFirstOperand(Number(accumulator)) : setFirstOperand(accumulator);
 		setOperation(() => operationsArr.subtraction)
 		setAccumulator('')
 	}
 
 	// Multiplication
 	function handleClickMultiplication(e) {
-		setFirstOperand(accumulator)
+		typeof accumulator === 'string' ? setFirstOperand(Number(accumulator)) : setFirstOperand(accumulator);
 		setOperation(() => operationsArr.multiplication)
 		setAccumulator('')
 	}
@@ -66,7 +65,7 @@ const App = () => {
 		if (!firstOperand || !accumulator) {
 			return;
 		}
-		const result = operation(firstOperand, accumulator)
+		const result = operation(firstOperand, typeof accumulator === 'string' ? Number(accumulator) : accumulator);
 		setTotal(() => result)
 		setAccumulator('')
 		setFirstOperand(null)
