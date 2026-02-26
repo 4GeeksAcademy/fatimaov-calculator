@@ -36,7 +36,7 @@ const App = () => {
 	}
 
 	// Decimal Point
-	function handleClickDecimalPoint(accumulator) {
+	function handleClickDecimalPoint() {
 		if (!Number.isInteger(accumulator)) {
 			return;
 		}
@@ -54,7 +54,7 @@ const App = () => {
 	// Subtraction
 	function handleClickSubtraction(e) {
 		if (!accumulator && !firstOperand || operation && !accumulator) {
-			return setAccumulator(e.target.innerHTML)
+			return setAccumulator(e.target.textContent)
 		}
 		typeof accumulator === 'string' ? setFirstOperand(Number(accumulator)) : setFirstOperand(accumulator);
 		setOperation(() => operationsArr.subtraction)
@@ -94,7 +94,7 @@ const App = () => {
 	}
 
 	// Clear
-	function handleClickClear(accumulator) {
+	function handleClickClear() {
 		const clearResultArr =
 			accumulator
 				.toString()
@@ -125,10 +125,10 @@ const App = () => {
 				</div>
 				<div>
 					<div className="row row-cols-4 text-center mt-2">
-						<ClearAll onSelectedKey={() => handleClickClearAll(accumulator)} />
+						<ClearAll onSelectedKey={handleClickClearAll} />
 						<Division onSelectedKey={handleClickDivision} />
 						<Multiplication onSelectedKey={handleClickMultiplication} />
-						<Clear onSelectedKey={() => handleClickClear(accumulator)} />
+						<Clear onSelectedKey={handleClickClear} />
 					</div>
 					<div className="row row-cols-4 text-center mt-2">
 						{[7, 8, 9].map((digit) => <DigitButton key={digit} value={digit} onSelectedKey={handleClickNumber} />)}
@@ -146,7 +146,7 @@ const App = () => {
 							<div className="row row-cols-3">
 								<Modulus onSelectedKey={handleClickModulus} />
 								<DigitButton value={0} onSelectedKey={handleClickNumber} />
-								<DecimalPoint onSelectedKey={() => handleClickDecimalPoint(accumulator)} />
+								<DecimalPoint onSelectedKey={handleClickDecimalPoint} />
 							</div>
 						</div>
 						<Equal onSelectedKey={handleClickEqual} />
