@@ -84,11 +84,17 @@ const App = () => {
 
 	// Total
 	function handleClickEqual() {
-		if (!firstOperand || !accumulator) {
+		if (!firstOperand && !accumulator) {
 			return;
 		}
+
+		if (accumulator && !firstOperand) {
+			setTotal(typeof accumulator === 'string' ? Number(accumulator) : accumulator)
+			return;
+		}
+
 		const result = operation(firstOperand, typeof accumulator === 'string' ? Number(accumulator) : accumulator);
-		setTotal(() => result)
+		setTotal(result)
 		setAccumulator('')
 		setFirstOperand(null)
 	}
